@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>한국스포츠레저 면접 대비</title>
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Pretendard Variable"', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', '"Helvetica Neue"', '"Segoe UI"', '"Apple SD Gothic Neo"', '"Noto Sans KR"', '"Malgun Gothic"', 'sans-serif'],
+                    },
+                    colors: {
+                        toss: {
+                            bg: '#f2f4f6',
+                            white: '#ffffff',
+                            black: '#191f28',
+                            gray: '#8b95a1',
+                            grayDark: '#4e5968',
+                            blue: '#3182f6',
+                            blueLight: '#e8f3ff',
+                            red: '#f04452',
+                            redLight: '#fcefee'
+                        }
+                    },
+                    boxShadow: {
+                        'toss': '0 2px 10px rgba(0, 0, 0, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: theme('colors.toss.bg');
+            color: theme('colors.toss.black');
+            -webkit-font-smoothing: antialiased;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        .selectable-text {
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        .accordion-content.open {
+            max-height: 3000px; 
+            opacity: 1;
+        }
+
+        .chevron {
+            transition: transform 0.3s ease;
+        }
+        
+        .chevron.open {
+            transform: rotate(180deg);
+        }
+
+        /* 탭 가로 스크롤 및 스크롤바 숨김 */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* 탭 전환 애니메이션용 */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 px-5 py-4">
+        <h1 class="text-[18px] font-bold text-center text-toss-black">한국스포츠레저 면접 대비</h1>
+    </header>
+
+    <main class="max-w-md mx-auto w-full pb-10">
+        
+        <!-- 상단 탭 (모바일 최적화 - 스와이프 가능) -->
+        <div class="px-5 pt-6 pb-2">
+            <div class="flex bg-gray-100 p-1 rounded-[12px] relative gap-1 overflow-x-auto hide-scrollbar whitespace-nowrap">
+                <button id="tab-company" class="flex-1 min-w-[80px] py-2.5 text-[14px] font-bold rounded-[8px] transition-all z-10 text-toss-black bg-white shadow-sm" onclick="switchTab('company')">
+                    기업분석
+                </button>
+                <button id="tab-intro" class="flex-1 min-w-[80px] py-2.5 text-[14px] font-bold rounded-[8px] transition-all z-10 text-toss-gray" onclick="switchTab('intro')">
+                    자기소개
+                </button>
+                <button id="tab-pt" class="flex-1 min-w-[80px] py-2.5 text-[14px] font-bold rounded-[8px] transition-all z-10 text-toss-gray" onclick="switchTab('pt')">
+                    PT 면접
+                </button>
+                <button id="tab-discussion" class="flex-1 min-w-[80px] py-2.5 text-[14px] font-bold rounded-[8px] transition-all z-10 text-toss-gray" onclick="switchTab('discussion')">
+                    토론 면접
+                </button>
+            </div>
+        </div>
+
+        <!-- 1. 기업 분석 탭 컨텐츠 -->
+        <div id="content-company" class="tab-content active">
+            <div class="px-6 pt-4 pb-4">
+                <h2 class="text-toss-gray text-sm font-semibold mb-1">한국스포츠레저(주)</h2>
+                <h3 class="text-2xl font-bold text-toss-black leading-snug">기업 핵심 분석 &<br>사무 직무 수행업무</h3>
+            </div>
+            
+            <div class="px-4 space-y-4 selectable-text">
+                
+                <!-- 수행업무 카드 -->
+                <div class="bg-white rounded-[20px] shadow-toss p-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="bg-toss-blue text-white text-xs font-bold px-2.5 py-1 rounded-md">채용분야: 사무</span>
+                    </div>
+                    <h4 class="text-[18px] font-bold text-toss-black mb-4">📌 수행 업무 (JD 분석)</h4>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="text-toss-blue font-bold mt-0.5">1</span>
+                            <div>
+                                <strong class="text-toss-black block mb-1">경영지원 및 홍보·마케팅</strong>
+                                <p class="text-[14px] text-toss-grayDark break-keep">경영지원(기획, 인사, 총무, 재무 등) 및 홍보·마케팅 업무 전반 수행</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-toss-blue font-bold mt-0.5">2</span>
+                            <div>
+                                <strong class="text-toss-black block mb-1">감사 대응 및 윤리 경영</strong>
+                                <p class="text-[14px] text-toss-grayDark break-keep">기관 내부감사, 외부 감사대응 및 <mark class="bg-toss-blueLight text-toss-blue font-bold px-1 rounded">부조리신고센터 운영</mark>을 통한 투명성 확보</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-toss-blue font-bold mt-0.5">3</span>
+                            <div>
+                                <strong class="text-toss-black block mb-1">정책 이행 및 관리</strong>
+                                <p class="text-[14px] text-toss-grayDark break-keep">건전화 정책 이행, 고객·판매점 관리, <mark class="bg-toss-blueLight text-toss-blue font-bold px-1 rounded">부정행위 대응</mark> 및 스포츠단 운영 관리</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-toss-blue font-bold mt-0.5">4</span>
+                            <div>
+                                <strong class="text-toss-black block mb-1">상품 개발 및 운영</strong>
+                                <p class="text-[14px] text-toss-grayDark break-keep"><mark class="bg-toss-blueLight text-toss-blue font-bold px-1 rounded">체육진흥투표권 상품 개발</mark> 및 발행·운영 실무 담당</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 기업 비전 카드 -->
+                <div class="bg-white rounded-[20px] shadow-toss p-6">
+                    <h4 class="text-[18px] font-bold text-toss-black mb-3">🏢 기업 비전 및 미션</h4>
+                    <p class="text-[15px] text-toss-grayDark leading-relaxed break-keep mb-3">
+                        <strong class="font-bold text-toss-blue">"스포츠로 국민의 행복을 키우고 사회에 건강함을 더하는 기업"</strong>
+                    </p>
+                    <p class="text-[14px] text-toss-grayDark leading-relaxed break-keep">
+                        즐거움과 공익을 함께하는 스포츠문화를 창출하며, 투표권시스템(K-TOS)을 기반으로 <strong class="font-bold text-toss-black">투명하고 공정한 사업 운영</strong>을 통해 대한민국 스포츠 발전의 버팀목 역할을 수행합니다.
+                    </p>
+                </div>
+
+                <!-- 주요 사업 카드 -->
+                <div class="bg-white rounded-[20px] shadow-toss p-6 mb-8">
+                    <h4 class="text-[18px] font-bold text-toss-black mb-3">💡 주요 사업: 체육진흥투표권</h4>
+                    <p class="text-[14px] text-toss-grayDark leading-relaxed break-keep mb-4">
+                        국민체육진흥을 목적으로 시행되는 <strong class="font-bold text-toss-blue">국가 공익사업(스포츠토토)</strong> 수탁 운영. 조성된 기금은 전액 지역 체육 발전 및 복지 향상에 사용됩니다.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-gray-50 rounded-xl p-3 border border-gray-100">
+                            <strong class="text-toss-black text-[13px] block mb-1">토토 (TOTO)</strong>
+                            <span class="text-toss-grayDark text-[12px] break-keep">경기를 분석하며 즐기는 스포츠 레저게임</span>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3 border border-gray-100">
+                            <strong class="text-toss-black text-[13px] block mb-1">프로토 (PROTO)</strong>
+                            <span class="text-toss-grayDark text-[12px] break-keep">취향대로 투표 가능한 고객 선택형 게임</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 자기소개 탭 컨텐츠 -->
+        <div id="content-intro" class="tab-content">
+            <div class="px-6 pt-4 pb-4">
+                <h2 class="text-toss-gray text-sm font-semibold mb-1">한국스포츠레저</h2>
+                <h3 class="text-2xl font-bold text-toss-black leading-snug">1분 자기소개<br>스크립트</h3>
+            </div>
+            <div class="px-4 space-y-4">
+                <div class="bg-white rounded-[20px] shadow-toss p-6 selectable-text">
+                    <p class="text-[15px] text-toss-grayDark leading-relaxed break-keep mb-4">
+                        안녕하세요, <strong class="font-bold text-toss-blue">한국스포츠레저 일반직 사무 분야</strong>에 지원한 <strong class="font-bold text-toss-black">지원자(김윤지)</strong>입니다.
+                    </p>
+                    <p class="text-[15px] text-toss-grayDark leading-relaxed break-keep mb-4">
+                        저는 <strong class="font-bold text-toss-black">꼼꼼한 확인과 체계적인 자료 관리</strong>로 <strong class="font-bold text-toss-blue">업무 효율성</strong>을 높이는 데 강점이 있습니다. 이전 직장에서 교과서 개발을 지원하며, 원고, 음원 등 자료를 반복적으로 검수했습니다.
+                    </p>
+                    <p class="text-[15px] text-toss-grayDark leading-relaxed break-keep mb-4">
+                        단순히 전체를 훑어보는 것이 아니라, 본문·정답·음원·이미지를 <strong class="font-bold text-toss-black">항목별로 나누어</strong> 누락이나 오류가 생기지 않도록 점검하였고, 반복적인 검수 과정에서도 <strong class="font-bold text-toss-black">확인 순서를 정해 집중력을 유지</strong>했고 교과서의 정확성을 높였습니다. 이 과정에서 오가는 수정 파일도 <strong class="font-bold text-toss-black">기준에 맞춰 분류</strong>해 자료들이 뒤섞이지 않도록 관리했습니다.
+                    </p>
+                    <p class="text-[15px] text-toss-grayDark leading-relaxed break-keep mb-4">
+                        그 결과, 제가 검수와 수정 지원에 참여한 교과서가 <strong class="font-bold text-toss-blue">최종 심사를 통과하는 데 기여</strong>할 수 있었습니다.
+                    </p>
+                    <p class="text-[15px] text-toss-grayDark leading-relaxed break-keep mb-4">
+                        이 경험을 통해 작은 오류가 전체 일정을 지연시킬 수 있다는 점을 느꼈고, <strong class="font-bold text-toss-black">마감 기한을 지키면서도 빠진 부분이 없도록 한 번 더 확인하는 습관</strong>을 기를 수 있었습니다.
+                    </p>
+                    <p class="text-[15px] text-toss-grayDark leading-relaxed break-keep">
+                        입사 후에도 저의 강점을 바탕으로 맡은 자료와 문서를 꼼꼼하게 관리하며, <strong class="font-bold text-toss-blue">정확한 행정 처리에 기여</strong>하고 싶습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. PT 면접 탭 컨텐츠 -->
+        <div id="content-pt" class="tab-content">
+            <div class="px-6 pt-4 pb-4">
+                <h2 class="text-toss-gray text-sm font-semibold mb-1">한국스포츠레저</h2>
+                <h3 class="text-2xl font-bold text-toss-black leading-snug">주제별 5분 발표<br>구조화 노트</h3>
+            </div>
+            <div id="pt-card-container" class="px-4 space-y-4"></div>
+        </div>
+
+        <!-- 4. 토론 면접 탭 컨텐츠 -->
+        <div id="content-discussion" class="tab-content">
+            <div class="px-6 pt-4 pb-4">
+                <h2 class="text-toss-gray text-sm font-semibold mb-1">한국스포츠레저</h2>
+                <h3 class="text-2xl font-bold text-toss-black leading-snug">찬반 토론 면접<br>핵심 논리 구성</h3>
+            </div>
+            <div id="discussion-card-container" class="px-4 space-y-4"></div>
+        </div>
+
+    </main>
+
+    <script>
+        const ptData = [
+            {
+                title: "1. 체육진흥투표권 사업의 공익성 강화 방안",
+                conclusion: "체육진흥투표권 사업의 공익성을 강화하려면 수익금의 공익적 활용을 알리는 것뿐만 아니라, <strong class='font-bold text-toss-blue'>운영의 투명성과 건전한 참여 문화</strong>가 함께 뒷받침되어야 합니다.",
+                points: [
+                    { subtitle: "사업의 공익성에 대한 인식 강화", text: "수익금의 공익적 활용에 대해 알려야 합니다. 단순 판매사업이 아닌 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>국민체육 재원 조성</mark>과 연결된 사업임을 알릴 필요가 있습니다. 사행성 이미지 탈피를 위해 수익금이 생활체육, 전문체육, 장애인체육 등에 <strong class='font-bold text-toss-black'>어떻게 활용되는지 구체적으로</strong> 보여주는 것이 중요합니다." },
+                    { subtitle: "운영 과정의 투명성 제고", text: "공익성을 강화하고 신뢰를 얻으려면 운영 과정이 <strong class='font-bold text-toss-black'>투명하게</strong> 느껴져야 합니다. 수익금 사용처, 사업 성과, 건전성 관리 노력 등을 어려운 행정 용어가 아닌 카드뉴스, 인포그래픽 등으로 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>쉽게 공개하거나 정기 안내</mark>하여 사회적 의미를 높여야 합니다." },
+                    { subtitle: "건전한 참여 문화 조성", text: "공익성이 커도 사행성 우려가 커지면 신뢰도가 낮아집니다. 구매 한도, 책임 이용, 과몰입 예방 안내를 <strong class='font-bold text-toss-black'>강화</strong>하고, 이용자가 스스로 구매 습관을 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>점검할 수 있도록 자가진단</mark> 등을 쉽게 제공해야 합니다." }
+                ],
+                closing: "결론적으로 체육진흥투표권 사업의 공익성 강화는 단순 홍보가 아니라, <strong class='font-bold text-toss-black'>공익적 활용 사례 공개, 투명한 운영, 건전한 참여 문화</strong>가 함께 이루어질 때 가능하다고 생각합니다."
+            },
+            {
+                title: "2. 스포츠토토의 건전한 이용 문화 확산 방안",
+                conclusion: "스포츠토토의 건전한 이용 문화를 확산하기 위해서는 단순 책임 이용 강조가 아닌, <strong class='font-bold text-toss-blue'>스스로 조절하고 건전하게 이용할 수 있는 환경</strong>을 만드는 것이 중요합니다.",
+                points: [
+                    { subtitle: "이용자 대상 책임 이용 안내 강화", text: "구매 전 화면이나 판매점 안내문을 통해 구매 한도, 과몰입 위험성을 쉽게 전달해야 합니다. 단순히 '하지 말라'보다 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>스포츠를 즐기는 범위 안에서 이용</mark>해야 한다는 메시지가 더 효과적입니다." },
+                    { subtitle: "자가진단 및 예방 프로그램 활성화", text: "자가진단이나 구매 계획 설정 기능을 쉽게 안내하고, 반복 구매 등 과도한 이용 시 <strong class='font-bold text-toss-black'>스스로 멈출 수 있는 장치</strong>가 필요합니다. 위험 신호 반복 시 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>상담 기관 정보를 제공</mark>해 실제 예방으로 이어지게 해야 합니다." },
+                    { subtitle: "건전 이용 캠페인 확대", text: "단순 경고 중심보다 <strong class='font-bold text-toss-black'>스포츠를 건강하게 즐기는 문화</strong>와 연결해야 합니다. 온라인은 짧은 영상이나 카드뉴스로 필요성을 알리고, 오프라인은 판매점이나 스포츠 행사와 연계해 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>자연스럽게 메시지</mark>를 접하도록 해야 합니다." }
+                ],
+                closing: "결론적으로 스포츠토토의 건전한 이용은 단순 규제만으로는 한계가 있으므로, 이용자가 스스로 점검하고 조절할 수 있도록 안내와 예방 장치를 함께 강화하는 것이 필요하다고 생각합니다."
+            },
+            {
+                title: "3. 불법 스포츠도박 근절을 위한 대응 방안",
+                conclusion: "불법 스포츠도박을 줄이기 위해서는 단속도 필요하지만, 이용자가 <strong class='font-bold text-toss-blue'>합법과 불법의 차이를 알고 안전한 선택</strong>을 하도록 예방하는 것이 필요합니다.",
+                points: [
+                    { subtitle: "불법 스포츠도박의 위험성 안내", text: "단순히 불법이라는 점만 알리기보다 <strong class='font-bold text-toss-black'>실제 피해 사례</strong>를 활용해 개인에게 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>직접적인 위험</mark>이 될 수 있음을 현실적으로 보여주는 것이 중요합니다." },
+                    { subtitle: "합법 플랫폼의 신뢰도 강화", text: "구매 한도, 보호 장치, 건전 이용 안내, 수익금의 공익적 활용 등 불법도박과 다른 점을 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>구체적으로 비교</mark>해 합법 플랫폼의 신뢰도를 알려야 합니다." },
+                    { subtitle: "신고 및 협력 체계 강화", text: "신고 절차를 <strong class='font-bold text-toss-black'>간단히</strong> 하고 제보 창구를 적극 안내해야 합니다. 관계기관, 스포츠 단체, 온라인 플랫폼과 협력해 불법 광고나 사이트 노출을 줄이는 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>모니터링 체계</mark>도 중요합니다." }
+                ],
+                closing: "결론적으로 불법 스포츠도박 대응은 위험성 홍보, 합법 플랫폼 신뢰 확보, 실효성 있는 신고협력 체계가 함께 이루어져야 하며, 불법 사이트 이용이 실제 피해로 이어질 수 있는 문제로 인식하게 만드는 것이 중요합니다."
+            },
+            {
+                title: "4. 청년층 대상 건전 스포츠레저 문화 홍보 방안",
+                conclusion: "청년층에게는 일방적인 경고보다 <strong class='font-bold text-toss-blue'>SNS와 스포츠 콘텐츠를 활용해 자연스럽게</strong> 건전 이용 메시지를 전달하는 방식이 효과적이라고 생각합니다.",
+                points: [
+                    { subtitle: "청년층 친화적 SNS 활용", text: "긴 안내문보다 카드뉴스, 숏폼 영상처럼 <strong class='font-bold text-toss-black'>쉽고 직관적인 콘텐츠</strong>가 효과적입니다. 흥미 위주 홍보에 그치지 않고, <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>책임 있는 이용 기준</mark>을 함께 전달해야 합니다." },
+                    { subtitle: "스포츠 관람 문화와 연계", text: "스포츠토토 자체보다 <strong class='font-bold text-toss-black'>스포츠를 즐기는 문화와 연결</strong>하는 것이 자연스럽습니다. 긍정적 경험을 중심으로 홍보하여 거부감을 줄이고, <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>책임 있는 참여를 안내</mark>하는 것이 효과적입니다." },
+                    { subtitle: "예방 메시지의 자연스러운 노출", text: "직접적인 훈계나 경고는 <strong class='font-bold text-toss-black'>거부감</strong>을 줄 수 있습니다. 구매 한도, 자가진단, 과몰입 예방 메시지를 스포츠 콘텐츠 안에 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>자연스럽게 녹여내어</mark> 딱딱한 교육이 아닌 방식으로 받아들이게 해야 합니다." }
+                ],
+                closing: "청년층 대상의 건전 스포츠레저 문화 홍보는 딱딱한 예방 교육보다 스포츠를 즐기는 문화 안에서 책임 있는 이용 습관을 자연스럽게 전달하는 것이 효과적이라고 생각합니다."
+            },
+            {
+                title: "5. 체육진흥투표권 사업의 부정적 인식 개선 방안",
+                conclusion: "체육진흥투표권 사업의 부정적 인식을 개선하려면 공익성을 알리는 것과 동시에 <strong class='font-bold text-toss-blue'>사행성 우려를 줄이기 위한 건전성 관리 노력과 투명성</strong>을 보여줘야 합니다.",
+                points: [
+                    { subtitle: "공익재원 활용 사례 홍보", text: "사업이 어떤 공익적 역할을 하는지 구체적으로 알려야 합니다. 실제 체육 활동, 시설, 선수 지원으로 이어진 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>국민 체감형 사례</mark>를 보여줄수록 이해도와 신뢰도가 높아집니다." },
+                    { subtitle: "건전성 관리를 위한 노력 강화", text: "부정적 인식의 핵심인 사행성 우려를 낮추기 위해 구매 한도 등 관리 장치를 적극 알리고 강화해야 합니다. '많이 구매하게 만드는 사업'이 아닌 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>'기준 안에서 책임 있게 운영'</mark>되는 사업임을 강조해야 합니다." },
+                    { subtitle: "투명한 정보 제공", text: "정보 부족에서 오는 오해를 막기 위해 운영 구조, 수익금 사용 등을 <strong class='font-bold text-toss-black'>투명하게 공개</strong>해야 합니다. 단순 자료 공개보다 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>시각화나 사례 중심</mark>으로 설명하면 더 쉽게 이해할 수 있습니다." }
+                ],
+                closing: "체육진흥투표권 사업의 부정적 인식 개선은 공익재원 활용 사례 홍보, 철저한 건전성 관리, 투명한 정보 제공이 함께 이루어질 때 가능하다고 생각합니다."
+            },
+            {
+                title: "6. 온라인 발매 시스템의 건전성 강화 방안",
+                conclusion: "온라인 발매 시스템은 편리성이 큰 만큼 과몰입 위험도 함께 관리해야 하므로, <strong class='font-bold text-toss-blue'>이용자 자기통제 장치와 시스템 차원의 모니터링</strong>이 함께 필요합니다.",
+                points: [
+                    { subtitle: "구매 한도 및 이용 패턴 관리", text: "접근성이 높은 온라인 특성상 스스로의 이용 정도를 인식하기 어렵습니다. 자신의 최근 이용 패턴을 쉽게 확인하여 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>스스로 조절</mark>할 수 있게 해야 합니다." },
+                    { subtitle: "자가진단 및 경고 기능 고도화", text: "구매 빈도나 패턴을 기준으로 필요한 시점에 자가진단, 구매계획 설정, 예방 정보를 <strong class='font-bold text-toss-black'>단계적으로 안내</strong>해야 합니다. 과도한 이용 시 단순 경고를 넘어 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>자가점검으로 이어지도록 유도</mark>해야 합니다." },
+                    { subtitle: "이상 거래 모니터링 강화", text: "짧은 시간 내 반복 구매 등 비정상적 이용 패턴을 <strong class='font-bold text-toss-black'>조기 발견</strong>하기 위해 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>시스템 차원의 모니터링</mark> 점검이 필요합니다. 이는 이용자 보호와 시스템 신뢰도 확보에 필수적입니다." }
+                ],
+                closing: "결론적으로 온라인 발매 시스템은 편리성을 유지하면서도 건전성을 지키는 균형이 중요하며, 이용자 자기점검과 시스템 모니터링을 함께 강화해야 한다고 생각합니다."
+            },
+            {
+                title: "7. 스포츠 데이터 활용 서비스 개선 방안",
+                conclusion: "스포츠 데이터 활용은 이용자 편의와 정보 접근성을 높일 수 있지만, <strong class='font-bold text-toss-blue'>정확성과 책임성</strong>을 기준으로 운영되어야 합니다.",
+                points: [
+                    { subtitle: "경기 정보 제공의 정확성 강화", text: "데이터 서비스의 핵심은 정확성입니다. 최신 정보 업데이트 체계를 마련하고 중요 데이터는 철저한 검수를 거쳐야 합니다. 빠른 제공보다 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>정확성이 우선</mark>입니다." },
+                    { subtitle: "이용자 맞춤형 정보 제공", text: "초보 이용자에게는 <strong class='font-bold text-toss-black'>기본 정보를 쉽게</strong>, 경험자에게는 세부 기록을 <strong class='font-bold text-toss-black'>선택적으로 제공</strong>하여 정보 과부하를 줄여야 합니다. 모든 정보를 나열하기보다 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>수준에 맞게 정리</mark>하는 것이 중요합니다." },
+                    { subtitle: "데이터 활용 시 공정성 및 책임성 확보", text: "데이터가 과도한 구매를 유도하는 데 쓰여서는 안 됩니다. 정보 화면에 <mark class='bg-toss-blueLight text-toss-blue font-bold px-1 rounded'>건전 이용 안내를 함께 배치</mark>하여 사행성 자극을 방지해야 합니다." }
+                ],
+                closing: "결론적으로 스포츠 데이터 활용은 서비스 품질을 높이는 좋은 방법이지만, 정확한 정보 제공과 건전한 이용을 돕는 방향으로 운영될 때 그 의미가 있다고 생각합니다."
+            }
+        ];
+
+        const discussionData = [
+            {
+                title: "1. 스포츠토토 구매한도를 더 확대해야 하는가",
+                proStand: "한도를 더 늘려야 한다",
+                conStand: "현행 한도를 유지해야 한다",
+                arguments: [
+                    {
+                        proTitle: "소비자 선택권 보장 및 합법시장 경쟁력 강화",
+                        proText: "성인 이용자가 합법적인 범위 안에서 스포츠토토를 즐길 권리도 존중되어야 해요. 현행 한도가 너무 낮으면 고액 베팅 수요가 합법시장이 아닌 불법 사설토토로 빠져나갈 수 있습니다.",
+                        conTitle: "국민 사행성 제어 및 도박중독 피해 최소화",
+                        conText: "스포츠토토는 일반 소비재가 아니라 사행산업이에요. 한도를 높이면 더 큰 금액을 반복적으로 베팅할 수 있어 도박 과몰입과 중독 위험이 커질 수 있습니다."
+                    },
+                    {
+                        proTitle: "불법시장 수요의 제도권 흡수",
+                        proText: "불법 사설토토는 한도 제한이 약하고 접근성이 높기 때문에 이용자를 끌어들이기 쉽습니다. 합법 스포츠토토의 한도를 현실화하면 불법시장으로 가는 수요를 제도권 안에서 관리할 수 있습니다.",
+                        conTitle: "불법시장 흡수 효과의 불확실성",
+                        conText: "불법 사이트 이용자는 단순히 한도 때문만이 아니라 고배당, 실시간 베팅, 익명성 때문에 이동합니다. 한도를 올린다고 해서 불법 이용자가 합법시장으로 돌아온다는 보장은 약합니다."
+                    },
+                    {
+                        proTitle: "체육진흥기금 및 공익재원 확대",
+                        proText: "합법 스포츠토토 매출이 증가하면 국민체육진흥기금 등 공익재원도 늘어날 수 있습니다. 불법시장으로 흘러가는 돈을 체육 복지와 스포츠 인프라 재원으로 전환할 수 있다는 장점이 있습니다.",
+                        conTitle: "공공성과 사행산업 총량 규제 준수",
+                        conText: "국가가 관리하는 사행산업은 수익성보다 공공성이 우선되어야 합니다. 기금 확대를 이유로 국민의 베팅 한도를 높이는 것은 공익적 명분과 충돌할 수 있습니다."
+                    },
+                    {
+                        proTitle: "기술 기반 통제로 부작용 완화 가능",
+                        proText: "한도를 무조건 풀자는 것이 아니라, 실명인증·월간 손실한도·과몰입 경고·자가차단 제도를 함께 도입하면 통제 가능한 범위에서 한도 상향이 가능합니다.",
+                        conTitle: "이용자 보호 장치로서의 한도 유지 필요",
+                        conText: "구매한도는 단순한 규제가 아니라 이용자의 손실을 제한하는 안전장치입니다. 기술적 관리가 있더라도 한도 확대 자체가 위험 노출을 키울 수 있으므로 신중해야 합니다."
+                    }
+                ]
+            },
+            {
+                title: "2. 청소년 도박 문제 예방을 위해 어디까지 규제해야 하는가",
+                proStand: "강력한 규제가 필요하다",
+                conStand: "과도한 규제는 신중해야 한다",
+                arguments: [
+                    {
+                        proTitle: "청소년 보호를 위한 선제적 차단 필요",
+                        proText: "청소년은 충동 조절과 판단 능력이 아직 발달 중이기 때문에 도박에 노출되면 중독으로 이어질 위험이 커요. 따라서 불법 도박 사이트, 광고, 결제 수단 등에 대해 강한 규제가 필요합니다.",
+                        conTitle: "규제만으로는 근본 해결이 어렵다",
+                        conText: "사이트를 차단해도 청소년들은 우회 접속이나 대체 플랫폼을 이용할 수 있어요. 단순 차단 중심 규제보다 예방교육, 상담, 가정·학교의 관리가 함께 이루어져야 합니다."
+                    },
+                    {
+                        proTitle: "불법 도박 광고와 접근 경로 차단",
+                        proText: "SNS, 오픈채팅, 유튜브, 게임 커뮤니티 등을 통한 도박 광고는 청소년을 쉽게 유인합니다. 청소년 보호를 위해 플랫폼 사업자에게 광고 차단과 신고 의무를 강화해야 합니다.",
+                        conTitle: "표현의 자유와 플랫폼 책임 범위 문제",
+                        conText: "모든 온라인 콘텐츠를 강하게 감시하면 일반 이용자의 표현의 자유나 사생활 침해 문제가 생길 수 있어요. 플랫폼 책임은 필요하지만, 과도한 감시는 신중해야 합니다."
+                    },
+                    {
+                        proTitle: "결제·계좌·대리입금 규제 강화",
+                        proText: "청소년 도박은 소액결제, 계좌이체, 대리입금 등으로 이어질 수 있습니다. 금융기관과 결제업체가 의심 거래를 모니터링하고 불법 도박 관련 계좌를 신속히 차단해야 합니다.",
+                        conTitle: "일상 금융활동까지 위축될 우려",
+                        conText: "의심 거래 기준이 지나치게 넓으면 정상적인 청소년 금융활동까지 제한될 수 있습니다. 규제는 필요하지만 명확한 기준과 사후 구제 절차가 함께 있어야 합니다."
+                    },
+                    {
+                        proTitle: "처벌보다 보호 중심의 강한 개입 필요",
+                        proText: "청소년 도박은 단순 비행이 아니라 중독과 피해의 문제이기도 합니다. 적발 시 처벌보다 상담, 치료, 부모 통지, 학교 연계 등 보호 조치를 의무화해야 합니다.",
+                        conTitle: "낙인효과와 신고 기피 우려",
+                        conText: "개입이 너무 강하면 청소년이 문제를 숨기거나 도움 요청을 피할 수 있어요. 강제 조치보다 자진신고, 비밀상담, 회복 프로그램처럼 접근성을 높이는 방식이 필요합니다."
+                    }
+                ],
+                proFinal: "청소년 도박은 개인 문제가 아니라 사회적 위험이므로, 광고·접근·결제 경로를 강하게 차단하고 상담·치유까지 연계하는 종합 규제가 필요합니다.",
+                conFinal: "규제는 필요하지만 차단과 처벌만으로는 한계가 있습니다. 과도한 통제보다 교육, 상담, 디지털 리터러시, 가정·학교 연계를 중심으로 균형 있게 접근해야 합니다."
+            },
+            {
+                title: "3. 불법 사설 도박 대응: 합법 토토 규제 완화 vs 유지",
+                proStand: "합법 토토 규제를 완화해야 한다",
+                conStand: "현행 규제를 유지해야 한다",
+                arguments: [
+                    {
+                        proTitle: "불법 사설 도박 수요의 제도권 흡수",
+                        proText: "불법 사설 도박은 높은 배당, 쉬운 접근성, 한도 제한 없음으로 이용자를 끌어들입니다. 합법 토토의 구매한도나 상품 규제를 일부 완화하면 이용자를 안전한 합법 시장 안으로 유도할 수 있습니다.",
+                        conTitle: "불법 시장 흡수 효과의 불확실성",
+                        conText: "불법 도박 이용자는 단순히 규제 때문만이 아니라 고배당, 실시간 베팅, 익명성 때문에 이동합니다. 합법 토토 규제를 완화해도 불법 시장 이용자가 실제로 돌아올지는 불확실합니다."
+                    },
+                    {
+                        proTitle: "합법 시장 경쟁력 강화",
+                        proText: "합법 토토가 지나치게 제한적이면 이용자 입장에서는 매력이 떨어집니다. 현실 수요를 반영해 규제를 완화하면 불법 사이트와 경쟁할 최소한의 조건을 만들 수 있습니다.",
+                        conTitle: "사행성 확대 및 도박 중독 우려",
+                        conText: "규제를 완화하면 합법 토토도 더 많은 금액과 빈도로 이용될 가능성이 커집니다. 이는 도박 과몰입과 중독 문제를 키울 수 있어 사회적 비용 증가로 이어질 수 있습니다."
+                    },
+                    {
+                        proTitle: "실명 기반 관리 가능",
+                        proText: "불법 사설 도박은 이용자 보호 장치가 거의 없지만, 합법 토토는 본인인증과 구매기록 관리가 가능합니다. 차라리 합법 플랫폼 안에서 이용자를 관리하는 것이 피해 예방에 더 효과적일 수 있습니다.",
+                        conTitle: "국가의 사행산업 조장 책임 문제",
+                        conText: "합법 토토는 국가가 관리하는 사행산업이므로 수익성보다 공공성이 우선되어야 합니다. 불법 도박을 막겠다는 이유로 합법 도박의 문턱을 낮추는 것은 국가가 사행성을 조장한다는 비판을 받을 수 있습니다."
+                    },
+                    {
+                        proTitle: "공익재원 확대 효과",
+                        proText: "불법 시장으로 흘러가던 자금이 합법 토토로 유입되면 체육진흥기금 등 공익재원으로 활용될 수 있습니다. 음성적 자금을 공적 영역으로 돌린다는 점에서 긍정적 효과가 있습니다.",
+                        conTitle: "근본 대안은 규제 완화가 아니라 단속 강화",
+                        conText: "불법 사설 도박 문제는 합법 토토 규제를 푸는 방식보다 사이트 차단, 계좌 추적, 광고 차단, 운영자 처벌 강화로 대응해야 합니다. 문제의 원인을 합법 시장 확대에서 찾는 것은 본질을 흐릴 수 있습니다."
+                    }
+                ],
+                proFinal: "불법 사설 도박을 완전히 막기 어렵다면, 합법 토토 규제를 일부 완화해 수요를 제도권 안으로 흡수하고 실명 기반으로 관리하는 것이 현실적입니다.",
+                conFinal: "불법 도박 대응은 필요하지만, 합법 토토 규제 완화가 곧 해결책은 아닙니다. 현행 규제를 유지하면서 불법 시장 단속과 이용자 보호를 강화하는 것이 더 바람직합니다."
+            },
+            {
+                title: "4. 스포츠토토 신규 종목 편입 찬반 (e스포츠 등)",
+                proStand: "신규 종목을 편입해야 한다",
+                conStand: "신중하거나 제한해야 한다",
+                arguments: [
+                    {
+                        proTitle: "스포츠 산업 변화 반영",
+                        proText: "스포츠 소비 형태가 축구·야구 중심에서 e스포츠, 비인기 종목, 생활체육으로 확대되고 있어요. 스포츠토토도 변화된 스포츠 시장을 반영해 신규 종목을 편입할 필요가 있습니다.",
+                        conTitle: "사행성 확산 우려",
+                        conText: "종목이 늘어날수록 베팅 기회도 함께 증가합니다. 특히 e스포츠처럼 젊은 층의 관심이 높은 종목은 청소년 도박 노출과 사행성 확대 우려가 커질 수 있습니다."
+                    },
+                    {
+                        proTitle: "비인기 종목 활성화 및 재원 확대",
+                        proText: "아마추어 핸드볼 같은 비인기 종목이 편입되면 대중의 관심이 높아지고, 관련 종목의 재정 기반도 강화될 수 있습니다. 스포츠토토 수익이 체육 발전 재원으로 활용된다는 점에서 긍정적 효과가 있습니다.",
+                        conTitle: "경기 조작 위험 증가",
+                        conText: "아마추어·비인기 종목은 선수 처우와 감시 체계가 상대적으로 약할 수 있습니다. 여기에 베팅이 결합되면 승부조작, 내부정보 악용, 선수 유혹 가능성이 커질 수 있습니다."
+                    },
+                    {
+                        proTitle: "불법 사설 베팅 수요의 합법시장 흡수",
+                        proText: "e스포츠나 비인기 종목은 이미 불법 사설 도박 사이트에서 베팅 대상으로 활용되는 경우가 많습니다. 합법 스포츠토토에 편입하면 불법 수요를 제도권 안으로 흡수하고 관리할 수 있습니다.",
+                        conTitle: "종목 관리 역량 부족 문제",
+                        conText: "신규 종목을 편입하려면 경기 데이터, 심판 신뢰성, 선수 등록, 부정행위 감시 체계가 갖춰져야 합니다. 이런 기반이 부족한 상태에서 편입하면 공정성 논란이 생길 수 있습니다."
+                    },
+                    {
+                        proTitle: "소비자 선택권 및 상품 경쟁력 강화",
+                        proText: "기존 인기 종목에만 한정하면 합법 토토의 매력이 떨어질 수 있습니다. 다양한 종목을 제공하면 이용자 선택권이 넓어지고, 불법 사이트와의 경쟁력도 높아질 수 있습니다.",
+                        conTitle: "스포츠의 본질 훼손 우려",
+                        conText: "아마추어 스포츠는 승패보다 참여, 성장, 공정한 경쟁의 의미가 큽니다. 여기에 베팅 요소가 들어오면 선수와 경기 자체가 도박 상품처럼 소비될 위험이 있습니다."
+                    }
+                ],
+                proFinal: "신규 종목 편입은 스포츠 시장 변화와 불법시장 대응 측면에서 필요합니다. 다만 모든 종목을 일괄 편입하기보다, 경기 운영 투명성·승부조작 방지 시스템·청소년 보호 장치가 마련된 종목부터 단계적으로 확대해야 합니다.",
+                conFinal: "신규 종목 편입은 신중해야 합니다. 특히 e스포츠와 아마추어 종목은 청소년 접근성, 승부조작 위험, 관리 체계 미비 문제가 크므로 현행 종목 중심으로 운영하고 충분한 검증 후 제한적으로 검토해야 합니다."
+            },
+            {
+                title: "5. '구매 실명제' 강화 및 규제 확대",
+                proStand: "실명제·건전화 규제를 강화해야 한다",
+                conStand: "과도한 규제 확대는 신중해야 한다",
+                arguments: [
+                    {
+                        proTitle: "도박 과몰입 예방 및 이용자 보호",
+                        proText: "스포츠토토는 사행성이 있는 제도이기 때문에 이용자의 구매 패턴을 관리할 필요가 있어요. 실명제를 강화하면 고액·반복 구매자를 조기에 파악하고, 과몰입 위험이 있는 이용자에게 경고나 제한 조치를 할 수 있습니다.",
+                        conTitle: "개인정보 침해 및 감시 우려",
+                        conText: "실명제 강화는 이용자의 구매 이력과 행동 정보를 더 많이 수집한다는 의미입니다. 과도한 정보 수집은 사생활 침해나 개인정보 유출 위험으로 이어질 수 있어 신중해야 합니다."
+                    },
+                    {
+                        proTitle: "청소년·타인 명의 이용 차단",
+                        proText: "실명 확인을 강화하면 미성년자 이용, 대리구매, 타인 명의 사용을 줄일 수 있습니다. 특히 모바일·온라인 구매 환경에서는 본인인증과 계좌 확인을 강화해 취약계층 보호 효과를 높일 수 있습니다.",
+                        conTitle: "이용자 불편 증가 및 합법시장 이탈 가능성",
+                        conText: "인증 절차가 복잡해지면 정상적으로 이용하는 성인 소비자도 불편을 느낄 수 있습니다. 합법 플랫폼 이용이 번거로워지면 일부 이용자가 오히려 불법 사설토토로 이동할 가능성도 있습니다."
+                    },
+                    {
+                        proTitle: "불법도박과 차별화되는 공공성 확보",
+                        proText: "합법 스포츠토토는 불법 사설도박과 달리 공적 관리와 이용자 보호가 핵심입니다. 실명제와 건전화 규제가 강화될수록 합법시장에 대한 신뢰성과 제도적 정당성이 높아질 수 있습니다.",
+                        conTitle: "규제만으로 건전화 효과가 보장되지 않음",
+                        conText: "실명제를 강화해도 중독이나 과몰입 문제가 완전히 해결되는 것은 아닙니다. 단순한 신원 확인보다 상담, 교육, 자가진단, 치료 연계 같은 실질적 지원이 함께 이루어져야 합니다."
+                    },
+                    {
+                        proTitle: "데이터 기반 건전화 정책 가능",
+                        proText: "실명 기반 구매 데이터가 축적되면 이상 구매 패턴, 반복 구매, 손실 누적 등을 분석할 수 있습니다. 이를 통해 고위험 이용자에게 맞춤형 경고, 구매 제한, 자가차단 제도를 적용할 수 있습니다.",
+                        conTitle: "성인 이용자의 자율성 침해 논란",
+                        conText: "성인이 합법적으로 스포츠토토를 이용하는 것까지 지나치게 통제하면 자기결정권 침해 논란이 생길 수 있습니다. 모든 이용자를 잠재적 중독자로 전제하는 방식은 과도할 수 있습니다."
+                    }
+                ],
+                proFinal: "구매 실명제와 건전화 규제는 합법 스포츠토토의 공공성을 지키기 위한 필수 장치입니다. 다만 단순 감시가 아니라 과몰입 예방, 청소년 보호, 상담·치유 연계 중심으로 강화해야 합니다.",
+                conFinal: "이용자 보호는 필요하지만 과도한 실명제와 규제 확대는 개인정보 침해와 합법시장 위축을 초래할 수 있습니다. 규제는 최소화하되, 교육·상담·자율통제 중심의 균형 있는 접근이 필요합니다."
+            },
+            {
+                title: "6. 스포츠토토 수익금 배분 방식의 형평성",
+                proStand: "배분 방식을 개선해야 한다",
+                conStand: "현행 배분 구조를 유지해야 한다",
+                arguments: [
+                    {
+                        proTitle: "비인기·소외 종목 지원 확대 필요",
+                        proText: "스포츠토토 수익금은 국민 체육 발전을 위한 공익 재원입니다. 하지만 인기 종목이나 엘리트 체육 중심으로 배분될 경우, 비인기 종목·장애인 체육·생활체육은 상대적으로 소외될 수 있어요.",
+                        conTitle: "성과와 수요를 반영한 배분도 필요",
+                        conText: "수익금은 한정된 재원이므로 모든 분야에 동일하게 나누기 어렵습니다. 국민 관심도, 국제대회 성과, 참여 인구, 사업 효과성을 고려해 우선순위를 정하는 것도 합리적입니다."
+                    },
+                    {
+                        proTitle: "지역 간 체육 인프라 격차 해소",
+                        proText: "수도권이나 대도시에 체육시설과 지원이 집중되면 지역 주민의 스포츠 참여 기회가 줄어듭니다. 기금 배분 시 지역 균형을 강화해 지방 체육시설, 학교체육, 생활체육 기반을 넓혀야 합니다.",
+                        conTitle: "무조건적 균등 배분은 비효율 가능성",
+                        conText: "지역 균형도 중요하지만, 수요가 적거나 운영 역량이 부족한 곳에 일률적으로 재원을 배분하면 예산 낭비가 발생할 수 있습니다. 형평성과 함께 집행 효율성도 고려해야 합니다."
+                    },
+                    {
+                        proTitle: "공익 목적에 맞는 투명성 강화",
+                        proText: "스포츠토토는 사행산업이라는 특수성이 있기 때문에 수익금이 어디에, 어떤 기준으로 쓰이는지 국민에게 명확히 공개되어야 합니다. 배분 기준이 불투명하면 제도 신뢰가 떨어질 수 있습니다.",
+                        conTitle: "기존 심사·집행 체계의 전문성 존중",
+                        conText: "기금 배분은 단순 인기투표가 아니라 정책 목표, 사업계획, 성과평가 등을 종합해 결정됩니다. 지나친 외부 요구에 따라 배분 구조를 자주 바꾸면 정책의 일관성이 약해질 수 있습니다."
+                    },
+                    {
+                        proTitle: "생활체육과 취약계층 중심 배분 필요",
+                        proText: "국민체육진흥기금이라는 이름에 맞게 국민 다수가 체감할 수 있는 생활체육, 청소년 체육, 노인 체육, 장애인 체육 지원이 강화되어야 합니다. 특정 단체나 엘리트 체육 위주 배분은 형평성 논란을 부를 수 있습니다.",
+                        conTitle: "전문체육·국가대표 지원도 공익성이 큼",
+                        conText: "엘리트 체육과 국가대표 지원은 국민 통합, 국제 경쟁력, 스포츠 산업 발전에 기여합니다. 생활체육만 강조하면 전문체육 기반이 약화될 수 있어 균형 있는 배분이 필요합니다."
+                    }
+                ],
+                proFinal: "국민체육진흥기금은 공익 재원이므로 배분 기준의 투명성을 높이고, 비인기 종목·지역 체육·장애인 체육·생활체육 등 상대적으로 소외된 영역에 대한 배려를 강화해야 합니다.",
+                conFinal: "형평성 개선은 필요하지만, 단순 균등 배분은 예산 효율성을 떨어뜨릴 수 있습니다. 현행 체계를 유지하되 성과평가와 투명성 보완을 통해 점진적으로 개선하는 것이 바람직합니다."
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPTCards();
+            renderDiscussionCards();
+        });
+
+        // 탭 전환 로직
+        function switchTab(tabId) {
+            const tabs = ['company', 'intro', 'pt', 'discussion'];
+            
+            tabs.forEach(id => {
+                const btn = document.getElementById(`tab-${id}`);
+                const content = document.getElementById(`content-${id}`);
+                
+                if (id === tabId) {
+                    btn.className = "flex-1 min-w-[80px] py-2.5 text-[14px] font-bold rounded-[8px] transition-all z-10 text-toss-black bg-white shadow-sm";
+                    content.classList.add('active');
+                } else {
+                    btn.className = "flex-1 min-w-[80px] py-2.5 text-[14px] font-bold rounded-[8px] transition-all z-10 text-toss-gray";
+                    content.classList.remove('active');
+                }
+            });
+        }
+
+        // 공통 아코디언 이벤트 연결 함수
+        function attachAccordionEvent(card, header, content) {
+            header.addEventListener('click', () => {
+                const isOpen = content.classList.contains('open');
+                const chevron = header.querySelector('.chevron');
+                
+                if (isOpen) {
+                    content.classList.remove('open');
+                    chevron.classList.remove('open');
+                } else {
+                    content.classList.add('open');
+                    chevron.classList.add('open');
+                }
+            });
+        }
+
+        // PT 면접 카드 렌더링
+        function renderPTCards() {
+            const container = document.getElementById('pt-card-container');
+            container.innerHTML = ''; 
+
+            ptData.forEach((data, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-[20px] shadow-toss overflow-hidden mb-4";
+
+                const header = document.createElement('div');
+                header.className = "p-5 flex justify-between items-start cursor-pointer select-none active:bg-gray-50 transition-colors";
+                const titleText = data.title.replace(/^\d+\.\s*/, '');
+                
+                header.innerHTML = `
+                    <div class="pr-4">
+                        <span class="text-toss-blue text-sm font-bold mb-1 block">주제 ${index + 1}</span>
+                        <h4 class="text-[17px] font-bold text-toss-black leading-tight">${titleText}</h4>
+                    </div>
+                    <div class="mt-1">
+                        <svg class="chevron w-6 h-6 text-toss-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                `;
+
+                const content = document.createElement('div');
+                content.className = "accordion-content bg-white px-5 pb-1 selectable-text";
+                
+                let contentHTML = `
+                    <div class="mb-6 pt-2">
+                        <div class="inline-block bg-toss-blueLight text-toss-blue text-xs font-bold px-2.5 py-1 rounded-md mb-2">발표 결론</div>
+                        <p class="text-[15px] text-toss-grayDark leading-relaxed break-keep">${data.conclusion}</p>
+                    </div>
+                    <div class="space-y-5 mb-6">
+                `;
+
+                data.points.forEach((point, pIndex) => {
+                    const pointNum = pIndex === 0 ? "첫 번째" : pIndex === 1 ? "두 번째" : "세 번째";
+                    contentHTML += `
+                        <div>
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="bg-gray-100 text-toss-grayDark text-[11px] font-bold px-2 py-0.5 rounded-full">${pointNum}</span>
+                                <h5 class="text-[15px] font-bold text-toss-black">${point.subtitle}</h5>
+                            </div>
+                            <p class="text-[14px] text-toss-grayDark leading-relaxed break-keep pl-1">${point.text}</p>
+                        </div>
+                    `;
+                });
+
+                contentHTML += `
+                    </div>
+                    <div class="mb-5 pb-5 border-t border-gray-100 pt-5">
+                        <div class="inline-block bg-gray-100 text-toss-grayDark text-xs font-bold px-2.5 py-1 rounded-md mb-2">마무리</div>
+                        <p class="text-[15px] text-toss-grayDark leading-relaxed break-keep">${data.closing}</p>
+                    </div>
+                `;
+                content.innerHTML = contentHTML;
+
+                attachAccordionEvent(card, header, content);
+                card.appendChild(header);
+                card.appendChild(content);
+                container.appendChild(card);
+            });
+            
+            if (container.firstElementChild) {
+                container.firstElementChild.querySelector('.accordion-content').classList.add('open');
+                container.firstElementChild.querySelector('.chevron').classList.add('open');
+            }
+        }
+
+        // 토론 면접 카드 렌더링
+        function renderDiscussionCards() {
+            const container = document.getElementById('discussion-card-container');
+            container.innerHTML = '';
+
+            discussionData.forEach((data, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-[20px] shadow-toss overflow-hidden mb-4";
+
+                const header = document.createElement('div');
+                header.className = "p-5 flex justify-between items-start cursor-pointer select-none active:bg-gray-50 transition-colors";
+                const titleText = data.title.replace(/^\d+\.\s*/, '');
+                
+                header.innerHTML = `
+                    <div class="pr-4">
+                        <span class="text-toss-blue text-sm font-bold mb-1 block">토론 ${index + 1}</span>
+                        <h4 class="text-[17px] font-bold text-toss-black leading-tight">${titleText}</h4>
+                    </div>
+                    <div class="mt-1">
+                        <svg class="chevron w-6 h-6 text-toss-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                `;
+
+                const content = document.createElement('div');
+                content.className = "accordion-content bg-white px-5 pb-1 selectable-text";
+                
+                let contentHTML = `
+                    <div class="flex gap-2 mb-6 pt-2">
+                        <div class="flex-1 bg-toss-blueLight rounded-lg p-3 text-center border border-blue-100">
+                            <span class="block text-toss-blue text-xs font-bold mb-1">🛡️ 찬성</span>
+                            <span class="text-[13px] font-bold text-toss-black break-keep">${data.proStand}</span>
+                        </div>
+                        <div class="flex-1 bg-toss-redLight rounded-lg p-3 text-center border border-red-50">
+                            <span class="block text-toss-red text-xs font-bold mb-1">🙅 반대</span>
+                            <span class="text-[13px] font-bold text-toss-black break-keep">${data.conStand}</span>
+                        </div>
+                    </div>
+                    <div class="space-y-6 mb-6">
+                `;
+
+                data.arguments.forEach((arg, aIndex) => {
+                    contentHTML += `
+                        <div class="relative">
+                            <div class="absolute top-0 bottom-0 left-[15px] w-[1px] bg-gray-200 z-0"></div>
+                            
+                            <div class="relative z-10 pl-8 mb-4">
+                                <div class="absolute left-0 top-1 w-[31px] h-[22px] bg-toss-blue text-white text-[10px] font-bold rounded-full flex items-center justify-center border-4 border-white shadow-sm">찬성</div>
+                                <h5 class="text-[15px] font-bold text-toss-black mb-1 leading-snug break-keep">${arg.proTitle}</h5>
+                                <p class="text-[14px] text-toss-grayDark leading-relaxed break-keep">${arg.proText}</p>
+                            </div>
+
+                            <div class="relative z-10 pl-8">
+                                <div class="absolute left-0 top-1 w-[31px] h-[22px] bg-toss-red text-white text-[10px] font-bold rounded-full flex items-center justify-center border-4 border-white shadow-sm">반대</div>
+                                <h5 class="text-[15px] font-bold text-toss-black mb-1 leading-snug break-keep">${arg.conTitle}</h5>
+                                <p class="text-[14px] text-toss-grayDark leading-relaxed break-keep">${arg.conText}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                contentHTML += `</div>`;
+
+                if (data.proFinal || data.conFinal) {
+                    contentHTML += `
+                        <div class="mb-5 pb-5 border-t border-gray-100 pt-5 space-y-3">
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="inline-block text-toss-blue text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-100 mb-2">찬성 최종 입장</div>
+                                <p class="text-[14px] text-toss-grayDark leading-relaxed break-keep">${data.proFinal || ''}</p>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="inline-block text-toss-red text-[11px] font-bold px-2 py-0.5 rounded-full bg-red-100 mb-2">반대 최종 입장</div>
+                                <p class="text-[14px] text-toss-grayDark leading-relaxed break-keep">${data.conFinal || ''}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                content.innerHTML = contentHTML;
+
+                attachAccordionEvent(card, header, content);
+                card.appendChild(header);
+                card.appendChild(content);
+                container.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
